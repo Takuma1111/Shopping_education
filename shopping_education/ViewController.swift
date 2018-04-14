@@ -20,6 +20,21 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func easy_Button(_ sender: UIButton) {
+        let vc = UIStoryboard(name: "easy_story", bundle: nil).instantiateInitialViewController()!
+        self.present(vc, animated: true)
+    }
+    
+    @IBAction func normal_Button(_ sender: UIButton) {
+        let vc = UIStoryboard(name: "normal_story", bundle: nil).instantiateInitialViewController()!
+        self.present(vc, animated: true)
+    }
+    
+    
+    @IBAction func dif_Button(_ sender: UIButton) {
+        let vc = UIStoryboard(name: "dif_story", bundle: nil).instantiateInitialViewController()!
+        self.present(vc, animated: true)
+    }
+    
 }
 
