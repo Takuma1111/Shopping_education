@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class easy_controller: UIViewController {
 
@@ -24,6 +25,13 @@ class easy_controller: UIViewController {
     var hundred: Int = 0
     var kakunin: Int = 0 //正解した時にボタンを連打したら正解数が増えるのでこの変数に正解したら1を入れ、不正解だったら0を入れ、最後の
                         //ボタンを押して移動する時に別の正解数を管理する変数に加える
+    
+    var audioPlayerInstance_true : AVAudioPlayer! = nil  // 正解音のインスタンス
+    var audioPlayerInstance_false : AVAudioPlayer! = nil    //不正解音のインスタンス
+    
+    
+    var talker = AVSpeechSynthesizer()  //自動読み上げ
+    
     
     @IBOutlet var gohyaku_count: UILabel!
     @IBOutlet var hyaku_count: UILabel!
@@ -69,7 +77,37 @@ class easy_controller: UIViewController {
         }else{
 
         }
-      
+
+        
+        
+        let soundFilePath = Bundle.main.path(forResource: "true_sound", ofType: "mp3")!
+        let sound:URL = URL(fileURLWithPath: soundFilePath)
+        // AVAudioPlayerのインスタンスを作成
+        do {
+            audioPlayerInstance_true = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+        } catch {
+            print("AVAudioPlayerインスタンス作成失敗")
+        }
+        
+        let soundFilePath_false = Bundle.main.path(forResource: "false_sound", ofType:"mp3")!
+        let sound_false:URL = URL(fileURLWithPath: soundFilePath_false)
+        
+        do {
+            audioPlayerInstance_false = try AVAudioPlayer(contentsOf: sound_false, fileTypeHint:nil)
+        } catch {
+            print("AVAudioPlayerインスタンス作成失敗")
+        }
+        
+        
+        // 話す内容をセット
+        var aa: String = String(datas[random].product_name)
+        let utterance = AVSpeechUtterance(string: aa)       //自動読み上げ
+        // 言語を日本に設定
+        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+        // 実行
+        self.talker.speak(utterance)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,18 +137,29 @@ class easy_controller: UIViewController {
         if pay == 0{
             hyouziLabel.text = "支払い完了しました"
             pay_over()
+            
+            audioPlayerInstance_true.currentTime = 0     //正解音の音量を設定
+            audioPlayerInstance_true.play()          //音楽再生
+            
+            
             action_image.image = UIImage(named: "maru.png") //正解した時の画像を表示
             kakunin = 1
             new_button()            //次の問題へ行くためにボタンを呼び出す
         }else if pay < 0{
             self.hyouziLabel.text = "払い過ぎです"
             self.pay_over()
+            
+            audioPlayerInstance_false.currentTime = 0
+            audioPlayerInstance_false.play()
+            
+            
             self.action_image.image = UIImage(named: "batu.png")
             kakunin = 0
             self.new_button()            //次の問題へ行くためにボタンを呼び出す
         }else{
             print("500ボタンの処理エラー")
         }
+        
     }
     
     
@@ -129,12 +178,21 @@ class easy_controller: UIViewController {
             hyouziLabel.text = "支払い完了しました"
             pay_over()      //ボタンを押して払いすぎて不正解にならないように
             action_image.image = UIImage(named: "maru.png")
+            
+            audioPlayerInstance_true.currentTime = 0
+            audioPlayerInstance_true.play()
+            
+            
             kakunin = 1
             new_button()
         }else if pay < 0 {
             hyouziLabel.text = "払い過ぎです"
             pay_over()
             action_image.image = UIImage(named: "batu.png")
+            
+            audioPlayerInstance_false.currentTime = 0
+            audioPlayerInstance_false.play()
+            
             kakunin = 0
             new_button()
         }else{

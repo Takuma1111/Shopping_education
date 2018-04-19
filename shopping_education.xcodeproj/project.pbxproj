@@ -95,6 +95,9 @@
 		2D92CCD220822C07005420E6 /* end_story.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D92CCD120822C07005420E6 /* end_story.storyboard */; };
 		2D92CCD6208234A5005420E6 /* あんぱん.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D92CCD5208234A5005420E6 /* あんぱん.jpg */; };
 		2D92CCD8208234C9005420E6 /* あんぱん.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D92CCD7208234C9005420E6 /* あんぱん.jpg */; };
+		2DE1F4902088A3FE001ECC5A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE1F48F2088A3FE001ECC5A /* AVFoundation.framework */; };
+		2DE1F4932088A4C8001ECC5A /* false_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1F4912088A4C8001ECC5A /* false_sound.mp3 */; };
+		2DE1F4942088A4C8001ECC5A /* true_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1F4922088A4C8001ECC5A /* true_sound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +212,9 @@
 		2D92CCD120822C07005420E6 /* end_story.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = end_story.storyboard; sourceTree = "<group>"; };
 		2D92CCD5208234A5005420E6 /* あんぱん.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "あんぱん.jpg"; path = "../../../../../Downloads/あんぱん.jpg"; sourceTree = "<group>"; };
 		2D92CCD7208234C9005420E6 /* あんぱん.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "あんぱん.jpg"; path = "../../../../../Downloads/あんぱん.jpg"; sourceTree = "<group>"; };
+		2DE1F48F2088A3FE001ECC5A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2DE1F4912088A4C8001ECC5A /* false_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = false_sound.mp3; path = ../../../../../Downloads/false_sound.mp3; sourceTree = "<group>"; };
+		2DE1F4922088A4C8001ECC5A /* true_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = true_sound.mp3; path = ../../../../../Downloads/true_sound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE1F4902088A3FE001ECC5A /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +250,7 @@
 				2D92CC06207FA060005420E6 /* shopping_educationTests */,
 				2D92CC11207FA060005420E6 /* shopping_educationUITests */,
 				2D92CBF0207FA05F005420E6 /* Products */,
+				2DE1F48E2088A3FE001ECC5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,6 +267,7 @@
 		2D92CBF1207FA05F005420E6 /* shopping_education */ = {
 			isa = PBXGroup;
 			children = (
+				2DE1F48D20881CD1001ECC5A /* soud */,
 				2D92CCA0207FA33E005420E6 /* 野菜画像 */,
 				2D92CC77207FA31C005420E6 /* 飯画像 */,
 				2D92CC54207FA30D005420E6 /* お菓子画像 */,
@@ -459,6 +468,24 @@
 			path = Result_scene;
 			sourceTree = "<group>";
 		};
+		2DE1F48D20881CD1001ECC5A /* soud */ = {
+			isa = PBXGroup;
+			children = (
+				2DE1F4912088A4C8001ECC5A /* false_sound.mp3 */,
+				2DE1F4922088A4C8001ECC5A /* true_sound.mp3 */,
+			);
+			name = soud;
+			path = ../../educationApp/educationApp/soud;
+			sourceTree = "<group>";
+		};
+		2DE1F48E2088A3FE001ECC5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2DE1F48F2088A3FE001ECC5A /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -580,6 +607,7 @@
 				2D92CC2C207FA16D005420E6 /* パンダ.png in Resources */,
 				2D92CCC4207FA34C005420E6 /* しいたけ.png in Resources */,
 				2D92CC71207FA30D005420E6 /* ティラミス.png in Resources */,
+				2DE1F4942088A4C8001ECC5A /* true_sound.mp3 in Resources */,
 				2D92CCBF207FA34C005420E6 /* かぼちゃ.png in Resources */,
 				2D92CC94207FA31C005420E6 /* とんかつ.png in Resources */,
 				2D92CC9B207FA31C005420E6 /* おせち.png in Resources */,
@@ -600,6 +628,7 @@
 				2D92CC53207FA2E8005420E6 /* 1.png in Resources */,
 				2D92CBFD207FA05F005420E6 /* LaunchScreen.storyboard in Resources */,
 				2D92CC3C207FA2AC005420E6 /* dif_story.storyboard in Resources */,
+				2DE1F4932088A4C8001ECC5A /* false_sound.mp3 in Resources */,
 				2D92CC73207FA30D005420E6 /* クッキー.png in Resources */,
 				2D92CC9D207FA31C005420E6 /* エビフライ.png in Resources */,
 				2D92CCC7207FA34C005420E6 /* sakuranbo.png in Resources */,

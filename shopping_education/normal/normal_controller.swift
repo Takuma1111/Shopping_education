@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+
 
 class normal_controller: UIViewController {
 
@@ -26,6 +28,10 @@ class normal_controller: UIViewController {
     @IBOutlet var price_label: UILabel!
     @IBOutlet var result_label: UILabel!
     
+    var audioPlayerInstance_true : AVAudioPlayer! = nil  // 正解音のインスタンス
+    var audioPlayerInstance_false : AVAudioPlayer! = nil    //不正解音のインスタンス
+    
+    var talker = AVSpeechSynthesizer()  //自動読み上げ
     
     
     @IBOutlet var fivecount_label: UILabel!
@@ -81,6 +87,36 @@ class normal_controller: UIViewController {
             self.present(vc, animated: true)
         }
         
+        
+        
+        let soundFilePath = Bundle.main.path(forResource: "true_sound", ofType: "mp3")!
+        let sound:URL = URL(fileURLWithPath: soundFilePath)
+        // AVAudioPlayerのインスタンスを作成
+        do {
+            audioPlayerInstance_true = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+        } catch {
+            print("AVAudioPlayerインスタンス作成失敗")
+        }
+        
+        let soundFilePath_false = Bundle.main.path(forResource: "false_sound", ofType:"mp3")!
+        let sound_false:URL = URL(fileURLWithPath: soundFilePath_false)
+        
+        do {
+            audioPlayerInstance_false = try AVAudioPlayer(contentsOf: sound_false, fileTypeHint:nil)
+        } catch {
+            print("AVAudioPlayerインスタンス作成失敗")
+        }
+        
+        
+        // 話す内容をセット
+        var aa: String = String(datas[random].product_name)
+        let utterance = AVSpeechUtterance(string: aa)       //自動読み上げ
+        // 言語を日本に設定
+        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+        // 実行
+        self.talker.speak(utterance)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,12 +153,20 @@ class normal_controller: UIViewController {
          if pay == 0{
             result_label.text = "支払い完了しました"
             pay_over()
+            
+            audioPlayerInstance_true.currentTime = 0
+            audioPlayerInstance_true.play()
+            
             judg_image.image = UIImage(named: "maru.png")
             kakunin = 1
             new_button()
         }else if pay < 0{
             result_label.text = "払い過ぎです"
             pay_over()
+            
+            audioPlayerInstance_false.currentTime = 0
+            audioPlayerInstance_false.play()
+            
             judg_image.image = UIImage(named: "batu.png")
             kakunin = 0
             new_button()
@@ -140,12 +184,20 @@ class normal_controller: UIViewController {
         if pay == 0 {
             result_label.text = "支払い完了しました"
             pay_over()
+            
+            audioPlayerInstance_true.currentTime = 0
+            audioPlayerInstance_true.play()
+            
             judg_image.image = UIImage(named: "maru.png")
             kakunin = 1
             new_button()
         }else if pay < 0{
             result_label.text = "払い過ぎです"
             pay_over()
+            
+            audioPlayerInstance_false.currentTime = 0
+            audioPlayerInstance_false.play()
+            
             judg_image.image = UIImage(named: "batu.png")
             kakunin = 0
             new_button()
@@ -163,12 +215,20 @@ class normal_controller: UIViewController {
          if pay == 0 {
             result_label.text = "支払い完了しました"
             pay_over()
+            
+            audioPlayerInstance_true.currentTime = 0
+            audioPlayerInstance_true.play()
+            
             judg_image.image = UIImage(named: "maru.png")
             kakunin = 1
             new_button()
         }else if pay < 0{
             result_label.text = "払い過ぎです"
             pay_over()
+            
+            audioPlayerInstance_false.currentTime = 0
+            audioPlayerInstance_false.play()
+            
             judg_image.image = UIImage(named: "batu.png")
             kakunin = 0
             new_button()
@@ -184,12 +244,20 @@ class normal_controller: UIViewController {
          if pay == 0 {
             result_label.text = "支払い完了しました"
             pay_over()
+            
+            audioPlayerInstance_true.currentTime = 0
+            audioPlayerInstance_true.play()
+            
             judg_image.image = UIImage(named: "maru.png")
             kakunin = 1
             new_button()
         }else if pay < 0 {
             result_label.text = "払い過ぎです"
             pay_over()
+            
+            audioPlayerInstance_false.currentTime = 0
+            audioPlayerInstance_false.play()
+            
             judg_image.image = UIImage(named: "batu.png")
             kakunin = 0
             new_button()
